@@ -1,0 +1,21 @@
+def binarySearch(array:list, target:int):
+    """This is a modification of the common binary search.It replaces the loop statement by calling itself until a condition is meet""".
+    if len(array)!=0:
+        # get midpoint
+        midpoint = len(array)//2
+        # checks if midpoint equals array position
+        if array[midpoint] == target:
+            return midpoint # returns midpoint we found our ans
+        elif array[midpoint] < target:
+            binary_search(array[midpoint+1:])
+            
+        else:
+            binarySearch(array[:midpoint])
+    else:
+        return -1
+
+def verify(ans):
+    if ans == -1:
+        print("array empty")
+    else:
+        print(ans)

@@ -1,0 +1,21 @@
+from time import time
+
+# create a node blueprint aka class
+def Treenode():
+    def __init__(self, key):
+        self.key = key
+        self.left = None
+        self.right = None
+
+    def __repr__(self):
+        print(f"Node class having key {self.key}")
+        
+    def __str__(self):
+        return self.__repr__()
+
+# create node object
+node0 = Treenode(3)
+node1 = Treenode(4)
+node2 = Treenode(5)
+
+print(node0)

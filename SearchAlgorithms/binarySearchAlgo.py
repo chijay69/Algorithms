@@ -8,57 +8,49 @@
 6. If equals to query position. break loop return value at position
 7. Repeat
 '''
+from time import time
 
+def check(array:list, index:int):
+    if array[index] == array[index +1]:
+        return True
+    return False
+                
 
-
-def getMidPos(queue):
-    print(f"the middle pos is {len(queue)//2}")
-    return len(queue)//2
-
-def getMidVal(queue, midpos):
-    print(f"Middle value is {queue[midpos]}")
-    return queue[midpos]
-
-def compare(midVal, query):
-    if midVal > query:
-        print("query is lower so hi = midval+1")
-        return "right"
-    elif midVal < query:
-        print("query is higher so lo = midval-1")
-        return "left"
-    elif midVal == query:
-        return "ans"
-    else:
-        print("something otherworldly")
-
-
-def BinarySearch(queue, query):
-    ''' This is a binary search algo in python to find a value from a deck of cards '''
-    lo = 0
-    hi = len(queue)-1
-    while lo <=hi:
-        try: 
-            mid_pos = getMidPos(queue)
-            mid_val = getMidVal(queue, mid_pos)
-            result = compare(mid_val, query)
-            if result == "right":
-                lo = mid_pos+1
-                queue = queue[mid_pos+1:]
-            if result == "left":
-                hi = mid_pos-1
-                queue = queue[:mid_pos-1]
-            if result == "ans":
-                print("Answer found")
-                print (f"query:{query} is at position {mid_pos}")
-                break
-        except IndexError:
-            print("out of bounds")
-            print("query not found")
-            break
-    print("Empty list of cards")
-
-
-queue =[9,7,7,7,5,4,4,4,4,4,3,2,1,1,0,0]
+queue = [i for i in range(1, 1000*10)]
 query = 4
-print(f"query: {query}\nqueue: {queue}")
-BinarySearch(queue, query)
+
+def binSearch(array:list, target:int):
+    first = 0
+    last=len(array)-1
+    if len(array) !=0:
+        while first <= last:
+            midpoint = (first+last)//2
+            print("gotten midpoint")
+            if (array[midpoint] == target):
+                print("midpoint is target pos")
+                return midpoint
+            elif array[midpoint] < target:
+                first=midpoint+1
+                print("moved right")
+            else:
+                last=midpoint-1
+                print("moved right")
+        print("absent")
+        return None
+    else:
+        return False
+    
+
+def validate(args):
+    if args is None:
+        print ("Not Found")
+    elif args is False:
+        print("Empty array")
+    else:
+        print("target is at pos: ",args)
+
+
+then = time()
+validate(binSearch(queue, query))
+print(f"time_difference = {time() - then} seconds")
+
